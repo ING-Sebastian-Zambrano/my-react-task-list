@@ -1,25 +1,18 @@
 import React, { useContext } from "react";
 import { TaskContext } from "../context/TaskContext";
-import TaskCard from "./Task";
+import Task from "./Task";
 
 function TaskList() {
   const { tasks } = useContext(TaskContext);
 
-  if (tasks.length === 0) {
-    return (
-      <h1 className="text-white text-4xl font-bold text-center">
-        No hay tareas aún
-      </h1>
-    );
-  }
-
   return (
-    <div className="flex flex-row gap-2">
+    <div>
       {tasks.map((task) => (
-        <TaskCard task={task} key={task.id} />
+        <Task key={task.id} task={task} />
       ))}
     </div>
   );
 }
 
 export default TaskList;
+

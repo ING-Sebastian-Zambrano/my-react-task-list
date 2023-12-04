@@ -1,45 +1,56 @@
-// Importar React, createContext y useEffect desde React
 import React, { createContext, useEffect, useState } from "react";
 
-// Importar el array de tareas desde "../data/tasks"
-import { tasks as data } from "../data/tasks";
-
-// Crear un nuevo contexto de tareas
 export const TaskContext = createContext();
 
-// Definir el proveedor de contexto TaskContextProvider
 export function TaskContextProvider(props) {
-  // Utilizar el hook useState para manejar el estado del array de tareas
   const [tasks, setTasks] = useState([]);
 
-  // Función para crear una nueva tarea y agregarla al array de tareas
   const createTask = (task) => {
-    setTasks([
-      ...tasks,
-      {
-        title: task.title,
-        id: tasks.length,
-        description: task.description,
-      },
-    ]);
+    setTasks([...tasks, { ...task, id: tasks.length }]);
+    localStorage.setItem("tasks", JSON.stringify([...tasks, { ...task, id: tasks.length }]));
   };
 
-  // Función para eliminar una tarea del array de tareas
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
+    localStorage.setItem("tasks", JSON.stringify(tasks.filter((task) => task.id !== taskId)));
   };
 
-  // Utilizar el hook useEffect para inicializar el array de tareas con datos iniciales
+  const editTask = (taskId, newTitle, newDescription) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === taskId
+          ? { ...task, title: newTitle, description: newDescription }
+          : task
+      )
+    );
+    localStorage.setItem(
+      "tasks",
+      JSON.stringify(
+        prevTasks.map((task) =>
+          task.id === taskId
+            ? { ...task, title: newTitle, description: newDescription }
+            : task
+        )
+      )
+    );
+  };
+
   useEffect(() => {
-    setTasks(data);
+    const storedTasks = localStorage.getItem("tasks");
+    if (storedTasks) {
+      setTasks(JSON.parse(storedTasks));
+    }
   }, []);
 
-  // Renderizar el proveedor de contexto con las funciones y el array de tareas como valor del contexto
   return (
     <TaskContext.Provider
-      value={{ tasks: tasks, deleteTask: deleteTask, createTask: createTask }}
+      value={{
+        tasks: tasks,
+        deleteTask: deleteTask,
+        createTask: createTask,
+        editTask: editTask,
+      }}
     >
-      {/* Renderizar los componentes hijos envueltos por el proveedor de contexto */}
       {props.children}
     </TaskContext.Provider>
   );
