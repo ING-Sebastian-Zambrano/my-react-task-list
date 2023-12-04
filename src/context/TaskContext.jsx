@@ -1,46 +1,28 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect } from 'react';
+import { useTaskManager } from '../hooks/useTaskManager';
 
 export const TaskContext = createContext();
 
 export function TaskContextProvider(props) {
-  const [tasks, setTasks] = useState([]);
+  // Utilizamos el hook useTaskManager para gestionar las tareas
+  const { tasks, createTask, deleteTask, updateTask, setTasks } = useTaskManager();
 
-  const createTask = (task) => {
-    setTasks([...tasks, { ...task, id: tasks.length }]);
-    localStorage.setItem("tasks", JSON.stringify([...tasks, { ...task, id: tasks.length }]));
-  };
-
-  const deleteTask = (taskId) => {
-    setTasks(tasks.filter((task) => task.id !== taskId));
-    localStorage.setItem("tasks", JSON.stringify(tasks.filter((task) => task.id !== taskId)));
-  };
-
+  // Nueva función para editar tareas
   const editTask = (taskId, newTitle, newDescription) => {
-    setTasks((prevTasks) =>
-      prevTasks.map((task) =>
-        task.id === taskId
-          ? { ...task, title: newTitle, description: newDescription }
-          : task
-      )
-    );
-    localStorage.setItem(
-      "tasks",
-      JSON.stringify(
-        prevTasks.map((task) =>
-          task.id === taskId
-            ? { ...task, title: newTitle, description: newDescription }
-            : task
-        )
-      )
-    );
+    // Utilizamos la función updateTask del hook useTaskManager
+    updateTask(taskId, { title: newTitle, description: newDescription });
   };
 
+  // Cargamos las tareas desde el localStorage al iniciar la aplicación
   useEffect(() => {
-    const storedTasks = localStorage.getItem("tasks");
+    const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
+      // Utilizamos la función setTasks del hook useTaskManager
       setTasks(JSON.parse(storedTasks));
     }
-  }, []);
+  }, [setTasks]);
+
+  // Resto del código...
 
   return (
     <TaskContext.Provider
@@ -48,6 +30,7 @@ export function TaskContextProvider(props) {
         tasks: tasks,
         deleteTask: deleteTask,
         createTask: createTask,
+        updateTask: updateTask,
         editTask: editTask,
       }}
     >

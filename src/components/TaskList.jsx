@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
-import { TaskContext } from "../context/TaskContext";
-import Task from "./Task";
+
+import React, { useContext } from 'react';
+import { TaskContext } from '../context/TaskContext';
+import Task from './Task';
 
 function TaskList() {
   const { tasks } = useContext(TaskContext);
@@ -15,4 +16,5 @@ function TaskList() {
 }
 
 export default TaskList;
+
 
