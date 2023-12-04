@@ -20,5 +20,5 @@ export const useTaskManager = () => {
     );
   };
 
-  return { tasks, createTask, deleteTask, updateTask, setTasks };  // Asegúrate de devolver setTasks
+  return { tasks, createTask, deleteTask, updateTask, setTasks };  
 };

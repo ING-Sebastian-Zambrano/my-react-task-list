@@ -22,7 +22,6 @@ export function TaskContextProvider(props) {
     }
   }, [setTasks]);
 
-  // Resto del código...
 
   return (
     <TaskContext.Provider
