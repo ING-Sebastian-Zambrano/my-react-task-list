@@ -1,36 +1,41 @@
-// Importar React, el hook useState y el contexto TaskContext desde React
-import React, { useContext, useState } from "react";
 
-// Importar el contexto TaskContext desde "../context/TaskContext"
+import React, { useContext, useState } from "react";
 import { TaskContext } from "../context/TaskContext";
 
-// Definir el componente funcional TaskForm
 function TaskForm() {
-  // Utilizar el hook useState para manejar el estado de los campos de título y descripción
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
-  // Obtener la función createTask del contexto TaskContext usando el hook useContext
+  const [error, setError] = useState("");
   const { createTask } = useContext(TaskContext);
 
-  // Función que maneja el envío del formulario
   const handleSubmit = (e) => {
-    // Evitar que se recargue la página al enviar el formulario
     e.preventDefault();
 
-    // Llamar a la función createTask del contexto para crear una nueva tarea
+    // Validaciones
+    if (title.length < 3) {
+      setError("El nombre de la tarea debe tener al menos 3 caracteres.");
+      return;
+    }
+// Si se desea que la descripcion sea Obligatoria descomentar estas lineas de código
+//    if (description.trim() === "") {
+//      setError("La descripción de la tarea no puede estar vacía.");
+//      return;
+//    }
+
+    // Crear tarea si pasa las validaciones
     createTask({ title, description });
 
-    // Limpiar los campos de título y descripción después de crear la tarea
+    // Limpiar el formulario y resetear el error
     setTitle("");
     setDescription("");
+    setError("");
   };
 
-  // Renderizar el formulario con campos para el título, descripción y un botón de guardado
   return (
     <div className="max-w-md mx-auto">
       <form onSubmit={handleSubmit} className="bg-slate-800 p-10 mb-4">
         <h1 className="text-2xl font-bold text-white mb-3">Crea tu tarea</h1>
+        {error && <p className="text-red-500">{error}</p>}
         <input
           placeholder="Escribe tu tarea"
           onChange={(e) => setTitle(e.target.value)}
@@ -40,11 +45,10 @@ function TaskForm() {
           required
         />
         <textarea
-          placeholder="Escribe la descripción de la tarea"
+          placeholder="Escribe la descripción de la tarea (Opcional)"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
           className="bg-slate-300 p-3 w-full mb-2"
-          required
         ></textarea>
         <button className="bg-indigo-500 px-3 py-1 text-white">Guardar</button>
       </form>
@@ -52,5 +56,4 @@ function TaskForm() {
   );
 }
 
-// Exportar el componente TaskForm para que pueda ser utilizado en otros archivos
 export default TaskForm;

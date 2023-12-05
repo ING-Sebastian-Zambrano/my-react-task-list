@@ -1,20 +1,30 @@
-import React, { useContext, useState } from "react";
-import { TaskContext } from "../context/TaskContext";
+
+import React, { useContext, useState } from 'react';
+import { TaskContext } from '../context/TaskContext';
 
 function Task({ task }) {
-  const { deleteTask, editTask } = useContext(TaskContext);
+  const { deleteTask, editTask, toggleTaskCompletion } = useContext(TaskContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(task.title);
   const [editedDescription, setEditedDescription] = useState(task.description);
 
   const handleEdit = () => {
-    editTask(task.id, editedTitle, editedDescription);
+    editTask(task.id, editedTitle, editedDescription, task.completed);
     setIsEditing(false);
+  };
+
+  const handleToggleCompletion = () => {
+    toggleTaskCompletion(task.id, !task.completed);
   };
 
   return (
     <div className="bg-gray-800 text-white p-4 rounded-md flex items-center">
-      <input type="checkbox" className="mr-4" />
+      <input
+        type="checkbox"
+        className="mr-4"
+        checked={task.completed}
+        onChange={handleToggleCompletion}
+      />
       <div>
         {isEditing ? (
           <div>
@@ -64,3 +74,4 @@ function Task({ task }) {
 }
 
 export default Task;
+
