@@ -1,6 +1,5 @@
 1. *Introducción:*
-   - (Imagen del producto en acción, interfaz de la aplicación con algunas tareas creadas).
-   - "Hola, estoy emocionado de presentarles nuestro último proyecto: una aplicación de Lista de Tareas construida con la tecnología Vite."
+   - "Aplicación de Lista de Tareas construida con la tecnología Vite."
 
 2. *Descripción del Producto:*
    - "Nuestra aplicación de Lista de Tareas es una herramienta intuitiva y fácil de usar para gestionar tus tareas diarias, proyectos y metas. Con un diseño limpio y moderno, es perfecta para cualquier usuario, desde aquellos que necesitan una simple lista hasta los que buscan organizar proyectos más complejos."
@@ -9,7 +8,6 @@
    - "Permite agregar, editar y eliminar tareas de manera eficiente."
    - "Marcadores de estado visuales para indicar tareas completadas o pendientes."
    - "Capacidad para editar detalles de cada tarea, incluido el título y la descripción."
-   - "Ordenamiento automático de tareas para mantener las más recientes en la parte superior."
    - "Persistencia de datos: las tareas se almacenan localmente, lo que significa que no perderás tu progreso al recargar la página."
 
 4. *Tecnologías Utilizadas:*
@@ -35,12 +33,11 @@
    - "Optimización del código con un hook personalizado useTaskManager para la gestión de tareas."
    - "Pruebas exhaustivas y refinamiento del diseño para garantizar una experiencia del usuario fluida."
 
-8. *Llamado a la Acción:*
-   - "¡Descubre la eficacia de la organización con nuestra Lista de Tareas! Únete a nosotros y simplifica tu vida diaria."
 
 
+***Descripción General***
 
-   Voy a proporcionarte una descripción general de los archivos clave en tu proyecto de Lista de Tareas con Vite, según la información proporcionada hasta ahora. Ten en cuenta que algunos archivos o directorios pueden no estar listados aquí si no han sido mencionados previamente o si son archivos generados automáticamente por Vite. Asegúrate de adaptar esta descripción si hay cambios o archivos adicionales en tu proyecto.
+   Voy a proporcionarte una descripción general de los archivos clave en tu proyecto de Lista de Tareas con Vite
 
 1. *src Directory:*
    - *main.jsx (o main.js):* Este es el punto de entrada principal de tu aplicación, donde se inicializa y monta el componente principal de React. También puede ser llamado index.jsx o index.js.
