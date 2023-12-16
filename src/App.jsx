@@ -1,23 +1,26 @@
-// Importar React, useEffect y useState desde React
-import React from "react";
-import TaskForm from "./components/Header";  // Importar el componente TaskForm
-import TaskList from "./components/TaskList";  // Importar el componente TaskList
 
-// Definir el componente funcional App
-function App() {
-  // Renderizar el contenido principal de la aplicación
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
+import Home from './components/Home';
+import List from './components/List';
+import SobreNosotros from './components/SobreNosotros';
+import Menu from './components/Menu';
+import './App.css';
+
+const App = () => {
   return (
-    <main className="bg-zinc-900 h-screen">
-      <div className="container mx-auto p-10">
-        {/* Renderizar el formulario para agregar tareas */}
-        <TaskForm />
-
-        {/* Renderizar la lista de tareas */}
-        <TaskList />
+    <BrowserRouter>
+      <div>
+        <Menu />
+        <Routes>
+          <Route path="/" element={<Home></Home>} />
+          <Route path="/list" element={<List></List>} />
+          <Route path="/about" element={<SobreNosotros></SobreNosotros>} />
+        </Routes>
       </div>
-    </main>
+    </BrowserRouter>
   );
-}
+};
 
-// Exportar el componente App para que pueda ser utilizado en otros archivos
 export default App;
