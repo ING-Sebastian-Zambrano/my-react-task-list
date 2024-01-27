@@ -1,42 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 #root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
+.list-container {
+  display: flex;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 1rem; /* Puedes ajustar el tamaño según tus preferencias */
+  color: white;
+  justify-content: flex-end;
+  background-color: #1E293B;
+
+}
+
+.item {
+  padding: 10px;
+  border-radius: 8px;
+  float: left;
+  background-color: #1E293B; 
+  padding: 2% 20px;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
   
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
+.task {
+  width: 50%;
+  margin: auto; 
+  text-align: center; 
+  padding: 2rem; 
+  box-sizing: border-box; 
+}
+  .principal {
+    display: flex;
+    padding: 20px;
+    
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  .izquierda {
+    padding: 20px;
+    width: 80%
+    
   }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
+
+  p {
+    text-align: justify;
   }
+
+  .derecha {
+    margin: 20px;
+    width: 30%
+
+  }
+
+  .iniciotext {
+    font-size: 20px;
+  }
+
   
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  h1{
+    font-size: 20px;
   }
+  .one,  .two, .three,  .four,  .five , .six,  .seven {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos en el contenedor */
+  }
+  .one h1,
+  .one p, .two  h1, .two p, .three p, .three  h1, .four  p, .four h1, .five p, .five h1, .six p, .six h1, .seven h1, .seven p{
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center; 
+    text-align: justify;
+  }
+
+
   
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  
-  .card {
-    padding: 2em;
-  }
-  
-  .read-the-docs {
-    color: #888;
-  }
   

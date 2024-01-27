@@ -1,25 +1,35 @@
-
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
+import { ChakraProvider, Box } from '@chakra-ui/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import List from './components/List';
 import SobreNosotros from './components/SobreNosotros';
 import Menu from './components/Menu';
-import './App.css';
+
+
 
 const App = () => {
+  const backgroundStyle = {
+    backgroundColor: '#f0f0f0', // Cambia este color según tus preferencias
+    minHeight: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
+  };
+
   return (
-    <BrowserRouter>
-      <div>
-        <Menu />
-        <Routes>
-          <Route path="/" element={<Home></Home>} />
-          <Route path="/list" element={<List></List>} />
-          <Route path="/about" element={<SobreNosotros></SobreNosotros>} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <ChakraProvider>
+      <Router>
+        <Box style={backgroundStyle}>
+          {/* Contenido de tu aplicación */}
+          <Menu />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/list" element={<List />} />
+            <Route path="/about" element={<SobreNosotros />} />
+          </Routes>
+        </Box>
+      </Router>
+    </ChakraProvider>
   );
 };
 
